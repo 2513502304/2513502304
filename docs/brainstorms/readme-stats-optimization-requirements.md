@@ -1,7 +1,7 @@
 # README & CRT Banner 优化
 
 **Date:** 2026-04-09
-**Status:** Done
+**Status:** In Progress
 
 ## Problem
 
@@ -20,8 +20,8 @@
 |----------|--------|-----------|
 | 卡片服务 | github-profile-summary-cards | GitHub Actions 生成静态 SVG，不依赖外部服务，永不挂 |
 | 主题 | bear | 温暖风格，与 CRT banner 搭配更协调 |
-| 卡片选择 | Profile Details + 语言饼图 + Productive Time | 3 张互补不重复，简洁为主 |
-| 排版 | 上 1 下 2 | Profile Details 居中占一行，下方两张并排，视觉层次清晰 |
+| 卡片选择 | Profile Details + Productive Time | 2 张互补不重复，去掉语言饼图精简展示 |
+| 排版 | 并排 | Profile Details (width=1000) 和 Productive Time (width=500) 用 table 并排 |
 
 ### Scope
 
@@ -29,7 +29,7 @@
 - 添加 GitHub Actions workflow 定期生成统计卡片
 - 更新 `README.md` 引用生成的 SVG 文件
 - 移除对 `github-readme-stats.vercel.app` 的依赖，包括图片 `src` 和外层 `<a href>` 链接
-- 使用 `<p align="center">` 替代现有 markdown 表格实现居中排版，卡片放置在 CRT banner 正下方（替换现有表格区域）
+- 使用 `<table>` 布局实现并排排版，卡片放置在 CRT banner 正下方（解决 GitHub profile 页面窄容器导致的垂直堆叠问题）
 
 **Out of scope:**
 - 添加其他 profile 装饰（贡献蛇、trophy 等）
@@ -37,15 +37,13 @@
 ### Expected Layout
 
 ```
-┌─────────────────────────────────┐
-│       CRT Banner (existing)      │
-├─────────────────────────────────┤
-│                                  │
-│      [ Profile Details ]         │  ← 居中, width=1000
-│                                  │
-│  [ 语言饼图 ]  [ Productive Time ]│  ← 并排居中, 各 width=495
-│                                  │
-└─────────────────────────────────┘
+┌──────────────────────────────────────┐
+│          CRT Banner (width=1000)      │
+├──────────────────────────────────────┤
+│                                       │
+│  [ Profile Details ][ Productive Time]│  ← table 并排, 1000+400
+│                                       │
+└──────────────────────────────────────┘
 ```
 
 ## CRT Banner 增强
@@ -60,14 +58,15 @@
 ### 布局调整
 
 - 字体从 18px 缩小到 16px，行间距相应缩小，以在 700px 高度内容纳所有字段
-- 右侧文字起始 y=70，上下间距均衡
+- 右侧文字起始 y=72，上下间距均衡
 - 渲染逻辑重构为 `draw_field` 辅助函数，统一处理字符串和列表类型
 - `name` 和 `age` 改为运行时自动获取（GitHub API / 生日计算）
 
-### 卡片对齐
+### 卡片布局
 
-- Profile Details 卡片设置 `width="1000"` 与 CRT banner 对齐
-- 下方两张并排卡片各设 `width="495"`
+- 去掉语言饼图（Repos per Language），仅保留 Profile Details 和 Productive Time
+- 两张卡片用 `<table>` 并排（Profile Details width=1000, Productive Time width=400）
+- GitHub profile 页面内容区约 854px 宽，table 会自动等比缩放适配
 
 ## Non-Goals
 
