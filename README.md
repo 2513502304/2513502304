@@ -1,19 +1,12 @@
-## Hi there 👋
+<p align="center">
+  <img width="1000" src="assets/banners/crt-banner.gif" alt="CRT Banner" />
+</p>
 
-<!--
-**2513502304/2513502304** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<p align="center">
+  <img src="profile-summary-card-output/bear/0-profile-details.svg" alt="Profile Details" />
+</p>
 
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
-
-| <a href="https://github.com/anuraghazra/github-readme-stats"><img align="center" src="https://github-readme-stats.vercel.app/api?username=2513502304&count_private=true&show_icons=true&include_all_commits=true&theme=buefy&hide_border=true&locale=cn" alt="Chijiang Zhai's github stats" /></a> | <a href="https://github.com/anuraghazra/github-readme-stats"><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=2513502304&layout=normal&theme=buefy&hide_border=true&locale=cn" /></a> |
-| ------------- | ------------- |
+<p align="center">
+  <img src="profile-summary-card-output/bear/1-repos-per-language.svg" alt="Repos per Language" />
+  <img src="profile-summary-card-output/bear/4-productive-time.svg" alt="Productive Time" />
+</p>
