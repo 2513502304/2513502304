@@ -448,7 +448,7 @@ def draw_info_panel(image: Image.Image, cfg: dict, frame_num: int) -> None:
     glow = (104, 255, 109, 150)
 
     x = 720
-    y = 70
+    y = 72
     line_gap = 34
     multi_gap = 28
     section_gap = 6
