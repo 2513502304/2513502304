@@ -7,6 +7,6 @@
 </p>
 
 <p align="center">
-  <img width="495" src="profile-summary-card-output/bear/1-repos-per-language.svg" alt="Repos per Language" />
-  <img width="495" src="profile-summary-card-output/bear/4-productive-time.svg" alt="Productive Time" />
+  <img width="475" src="profile-summary-card-output/bear/1-repos-per-language.svg" alt="Repos per Language" />
+  <img width="475" src="profile-summary-card-output/bear/4-productive-time.svg" alt="Productive Time" />
 </p>
