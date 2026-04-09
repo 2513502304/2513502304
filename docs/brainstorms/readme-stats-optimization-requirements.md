@@ -1,7 +1,7 @@
-# README 统计卡片优化
+# README & CRT Banner 优化
 
-**Date:** 2026-04-08
-**Status:** Draft
+**Date:** 2026-04-09
+**Status:** Done
 
 ## Problem
 
@@ -32,7 +32,6 @@
 - 使用 `<p align="center">` 替代现有 markdown 表格实现居中排版，卡片放置在 CRT banner 正下方（替换现有表格区域）
 
 **Out of scope:**
-- 修改 banner 或 README 其他部分
 - 添加其他 profile 装饰（贡献蛇、trophy 等）
 
 ### Expected Layout
@@ -42,12 +41,33 @@
 │       CRT Banner (existing)      │
 ├─────────────────────────────────┤
 │                                  │
-│      [ Profile Details ]         │  ← 居中
+│      [ Profile Details ]         │  ← 居中, width=1000
 │                                  │
-│  [ 语言饼图 ]  [ Productive Time ]│  ← 并排居中
+│  [ 语言饼图 ]  [ Productive Time ]│  ← 并排居中, 各 width=495
 │                                  │
 └─────────────────────────────────┘
 ```
+
+## CRT Banner 增强
+
+### 新增字段
+
+| 字段 | Header | 内容 |
+|------|--------|------|
+| Top Anime | Top Anime: | K-ON!, Mushoku Tensei, Steins;Gate |
+| Otaku Way | Otaku Way: | Never Skip OP & ED, Binge-Watch Series, Collect Full Figure Sets |
+
+### 布局调整
+
+- 字体从 18px 缩小到 16px，行间距相应缩小，以在 700px 高度内容纳所有字段
+- 右侧文字起始 y=70，上下间距均衡
+- 渲染逻辑重构为 `draw_field` 辅助函数，统一处理字符串和列表类型
+- `name` 和 `age` 改为运行时自动获取（GitHub API / 生日计算）
+
+### 卡片对齐
+
+- Profile Details 卡片设置 `width="1000"` 与 CRT banner 对齐
+- 下方两张并排卡片各设 `width="495"`
 
 ## Non-Goals
 

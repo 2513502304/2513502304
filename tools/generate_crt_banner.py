@@ -65,14 +65,21 @@ CONFIG = {
     "editor": [
         "VS Code / Cursor",
     ],
-    "languages": [
-        "Python, Cython,",
-        "C/C++, JavaScript",
-    ],
+    "languages": "Python, Cython, C/C++",
     "hobbies": [
         "Anime,",
         "Music,",
         "Anime Figure Collecting",
+    ],
+    "top_anime": [
+        "K-ON!,",
+        "Mushoku Tensei,",
+        "Steins;Gate",
+    ],
+    "otaku_way": [
+        "Never Skip OP & ED,",
+        "Binge-Watch Series,",
+        "Collect Full Figure Sets",
     ],
     "prompt": f"{github_name}@mbp$",
     "width": 1200,
@@ -433,83 +440,50 @@ def draw_portrait(
 
 
 def draw_info_panel(image: Image.Image, cfg: dict, frame_num: int) -> None:
-    font_main = load_font(18)
-    font_value = load_font(18)
-    font_prompt = load_font(18)
+    font_main = load_font(16)
+    font_value = load_font(16)
+    font_prompt = load_font(16)
     green = (149, 255, 121, 255)
     bright = (216, 255, 196, 255)
     glow = (104, 255, 109, 150)
 
     x = 720
     y = 70
-    line_gap = 40
-    value_x = x + 118
+    line_gap = 34
+    multi_gap = 28
+    section_gap = 6
+    value_x = x + 110
 
-    items = [
-        ("Name:", cfg["name"]),
-        ("Age:", cfg["age"]),
-        ("OS:", cfg["os"]),
-    ]
-
-    for label, value in items:
+    def draw_field(label, value, is_list=True):
+        nonlocal y
         draw_glow_text(image, (x, y), label, font_main, green, glow, blur_radius=4)
-        draw_glow_text(
-            image, (value_x, y), value, font_value, bright, glow, blur_radius=4
-        )
-        y += line_gap
+        if is_list and isinstance(value, list):
+            draw_glow_text(
+                image, (value_x, y), value[0], font_value, bright, glow, blur_radius=4
+            )
+            y += multi_gap
+            for line in value[1:]:
+                draw_glow_text(
+                    image, (value_x, y), line, font_value, bright, glow, blur_radius=4
+                )
+                y += multi_gap
+        else:
+            text = value if isinstance(value, str) else str(value)
+            draw_glow_text(
+                image, (value_x, y), text, font_value, bright, glow, blur_radius=4
+            )
+            y += line_gap
+        y += section_gap
 
-    draw_glow_text(image, (x, y), "Work:", font_main, green, glow, blur_radius=4)
-    draw_glow_text(
-        image, (value_x, y), cfg["work"][0], font_value, bright, glow, blur_radius=4
-    )
-    y += 34
-    for line in cfg["work"][1:]:
-        draw_glow_text(
-            image, (value_x, y), line, font_value, bright, glow, blur_radius=4
-        )
-        y += 34
-
-    y += 8
-    draw_glow_text(image, (x, y), "Editor:", font_main, green, glow, blur_radius=4)
-    draw_glow_text(
-        image, (value_x, y), cfg["editor"][0], font_value, bright, glow, blur_radius=4
-    )
-    y += 34
-    for line in cfg["editor"][1:]:
-        draw_glow_text(
-            image, (value_x, y), line, font_value, bright, glow, blur_radius=4
-        )
-        y += 34
-
-    y += 8
-    draw_glow_text(image, (x, y), "Languages:", font_main, green, glow, blur_radius=4)
-    draw_glow_text(
-        image,
-        (value_x, y),
-        cfg["languages"][0],
-        font_value,
-        bright,
-        glow,
-        blur_radius=4,
-    )
-    y += 34
-    for line in cfg["languages"][1:]:
-        draw_glow_text(
-            image, (value_x, y), line, font_value, bright, glow, blur_radius=4
-        )
-        y += 34
-
-    y += 8
-    draw_glow_text(image, (x, y), "Hobbies:", font_main, green, glow, blur_radius=4)
-    draw_glow_text(
-        image, (value_x, y), cfg["hobbies"][0], font_value, bright, glow, blur_radius=4
-    )
-    y += 34
-    for line in cfg["hobbies"][1:]:
-        draw_glow_text(
-            image, (value_x, y), line, font_value, bright, glow, blur_radius=4
-        )
-        y += 34
+    draw_field("Name:", cfg["name"], is_list=False)
+    draw_field("Age:", cfg["age"], is_list=False)
+    draw_field("OS:", cfg["os"], is_list=False)
+    draw_field("Work:", cfg["work"])
+    draw_field("Editor:", cfg["editor"])
+    draw_field("Languages:", cfg["languages"], is_list=False)
+    draw_field("Hobbies:", cfg["hobbies"])
+    draw_field("Top Anime:", cfg["top_anime"])
+    draw_field("Otaku Way:", cfg["otaku_way"])
 
     prompt_y = 628
     draw_glow_text(
