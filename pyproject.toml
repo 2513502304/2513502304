@@ -1,0 +1,9 @@
+[project]
+name = "2513502304"
+version = "0.1.0"
+description = "README"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=12.1.1",
+]
