@@ -2,7 +2,7 @@ name: Update CRT Banner on Birthday
 
 on:
   schedule:
-    - cron: "0 16 21 7 *"
+    - cron: "0 0 22 7 *"
   workflow_dispatch:
 
 jobs:
