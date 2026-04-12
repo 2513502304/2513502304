@@ -5,8 +5,12 @@ Portrait sources live under `images/portraits/`, while the output banner is
 kept under `assets/banners/`.
 """
 
+import json
+import urllib.request
 from collections import deque
+from datetime import date
 from pathlib import Path
+
 from PIL import (
     Image,
     ImageChops,
@@ -16,9 +20,6 @@ from PIL import (
     ImageFont,
     ImageOps,
 )
-from datetime import date
-import json
-import urllib.request
 
 GITHUB_USERNAME = "2513502304"
 BIRTHDAY = date(2003, 7, 22)
